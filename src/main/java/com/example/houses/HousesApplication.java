@@ -29,7 +29,8 @@ public class HousesApplication {
 					new House("North Pole"))
 					.forEach(houseRespository::save);
 			houseRespository.findAll()
-					.forEach(house -> System.out.println("New House: " + house.getAddress()));
+					.forEach(house -> pubSubTemplate.publish("newHouses", house.getAddress(),
+							null));
 			;
 		};
 	}
